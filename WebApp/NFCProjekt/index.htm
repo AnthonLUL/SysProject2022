@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Absence</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Get All</h1>
+        <ul v-if="students">
+            <li v-for="student in students">
+                {{student.studentId}}, {{student.name}}, {{student.absenceMin}}, {{student.nfcId}}
+            </li>
+        </ul>
+    <div v-else>No books </div>
+
+    <h1>Get By Id</h1>
+        <input v-model="studentId" placeholder="id" type="number">
+        <button v-on:click="getStudentById(studentId)" class="btn btn-primary">Get Student</button>
+        <div v-if="singleStudent">{{ singleStudent }}</div>
+        <div v-else>No such Student</div>
+
+
+    </div>
+    <script src="js/index.js"></script>
+
+</body>
+</html>
