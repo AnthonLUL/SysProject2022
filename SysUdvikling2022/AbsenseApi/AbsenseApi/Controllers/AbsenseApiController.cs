@@ -14,7 +14,7 @@ namespace AbsenseApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet]
-        public IEnumerable<Students> Get()
+        public IEnumerable<Student> Get()
         {
             return _manager.GetAll();
         }
@@ -22,9 +22,9 @@ namespace AbsenseApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{name}")]
-        public ActionResult<Students> Get(string name)
+        public ActionResult<Student> Get(string name)
         {
-            Students student = _manager.GetByName(name);
+            Student student = _manager.GetByName(name);
             if (student == null) return NotFound("lmao");
             return student;
         }
@@ -34,18 +34,18 @@ namespace AbsenseApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
         [HttpPost]
-        public ActionResult<Students> Post([FromBody] Students value)
+        public ActionResult<Student> Post([FromBody] Student value)
         {
-            Students students = _manager.Add(value);
+            Student students = _manager.Add(value);
             return Created("/" + students.StudentId ,students);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpPut("id")]
-        public ActionResult<Students> Put(int id, [FromBody] Students value)
+        public ActionResult<Student> Put(int id, [FromBody] Student value)
         {
-            Students student = _manager.Update(id, value);
+            Student student = _manager.Update(id, value);
             if (student == null) return NotFound("There is no student with the given Id");
             return Ok(value);
         }
@@ -53,9 +53,9 @@ namespace AbsenseApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpDelete("id")]
-        public ActionResult<Students> Delete(int id)
+        public ActionResult<Student> Delete(int id)
         {
-            Students student = _manager.Delete(id);
+            Student student = _manager.Delete(id);
             if (student == null) return NotFound("There is no student with that id");
             return Ok(student);
             

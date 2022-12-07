@@ -5,53 +5,56 @@ namespace AbsenseApi.Managers
     public class AbsenseApiManager
     {
         public static int nextId = 1;
-        private static readonly List<Students> StudentsList = new List<Students>
+        private static readonly List<Student> StudentList = new List<Student>
         {
-            new Students(studentId: nextId++,name: "Jonas", absenceMin: 24, nFCId: 12123434),
-            new Students(studentId: nextId++,name: "Anthon", absenceMin: 24, nFCId: 12123434),
-            new Students(studentId: nextId++,name: "Anton", absenceMin: 24, nFCId: 12123434),
-            new Students(studentId: nextId++,name: "Morten", absenceMin: 24, nFCId: 12123434),
+            new Student(studentId: nextId++,name: "Jonas", absenceMin: 24, nFCId: 12123434, checkedIn: false),
+            new Student(studentId: nextId++,name: "Anthon", absenceMin: 24, nFCId: 12123434, checkedIn: false),
+            new Student(studentId: nextId++,name: "Anton", absenceMin: 24, nFCId: 12123434, checkedIn: false),
+            new Student(studentId: nextId++,name: "Morten", absenceMin: 24, nFCId: 12123434, checkedIn: false),
         };
 
-        public List<Students> GetAll()
+        public List<Student> GetAll()
         {
-            List<Students> students = new List<Students>(StudentsList);
+            List<Student> students = new List<Student>(StudentList);
             return students;
         }
 
-        public Students GetById(int studentId)
+        public Student GetById(int studentId)
         {
-            return StudentsList.Find(student => student.StudentId == studentId);
+            return StudentList.Find(student => student.StudentId == studentId);
         }
 
-        public Students GetByName(string name)
+        public Student GetByName(string name)
         {
-            return StudentsList.Find(student => student.Name == name);
+            return StudentList.Find(student => student.Name == name);
         }
 
-        public Students Add(Students newStudents)
+        public Student Add(Student newStudent)
         {
-            newStudents.StudentId = nextId++;
-            StudentsList.Add(newStudents);
-            return newStudents;
+            newStudent.NameValidatior();
+            newStudent.StudentId = nextId++;
+            StudentList.Add(newStudent);
+            return newStudent;
         }
 
-        public Students Delete(int studentId)
+        public Student Delete(int studentId)
         {
-           Students students = StudentsList.Find(student => student.StudentId == studentId);
+           Student students = StudentList.Find(student => student.StudentId == studentId);
            if (students == null)return null;
-           StudentsList.Remove(students);
+           StudentList.Remove(students);
            return students;
         }
 
-        public Students Update(int studentId, Students update)
+        public Student Update(int studentId, Student update)
         {
-            Students? students = StudentsList.Find(student => student.StudentId == studentId);
-            if (students == null) return null;
-            students.Name = update.Name;
-            students.AbsenceMin = update.AbsenceMin;
-            students.NFCId = update.NFCId;
-            return students;
+            Student? student = StudentList.Find(student => student.StudentId == studentId);
+            if (student == null) return null;
+            student.NameValidatior();
+            student.Name = update.Name;
+            student.AbsenceMin = update.AbsenceMin;
+            student.NFCId = update.NFCId;
+            student.CheckedIn = update.CheckedIn;
+            return student;
         }
     }
 }
