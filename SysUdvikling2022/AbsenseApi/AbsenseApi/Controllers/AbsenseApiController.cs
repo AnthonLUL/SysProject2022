@@ -27,6 +27,16 @@ namespace AbsenseApi.Controllers
             Student student = _manager.GetByName(name);
             if (student == null) return NotFound("lmao");
             return student;
+        }  
+        
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("{nFCId}")]
+        public ActionResult<Student> Get(int nFCId)
+        {
+            Student student = _manager.GetByNFCId(nFCId);
+            if (student == null) return NotFound("lmao");
+            return student;
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]

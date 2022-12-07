@@ -29,6 +29,11 @@ namespace AbsenseApi.Managers
             return StudentList.Find(student => student.Name == name);
         }
 
+        public Student GetByNFCId(int nFCId)
+        {
+            return StudentList.Find(student => student.NFCId == nFCId);
+        }
+
         public Student Add(Student newStudent)
         {
             newStudent.NameValidatior();
