@@ -27,3 +27,13 @@ C:\Users\anton\Documents\GitHub\SysProject2022\SysUdvikling2022\AbsenseApi\Absen
 C:\Users\anton\Documents\GitHub\SysProject2022\SysUdvikling2022\AbsenseApi\AbsenseApi\obj\Debug\net6.0\AbsenseApi.pdb
 C:\Users\anton\Documents\GitHub\SysProject2022\SysUdvikling2022\AbsenseApi\AbsenseApi\obj\Debug\net6.0\AbsenseApi.genruntimeconfig.cache
 C:\Users\anton\Documents\GitHub\SysProject2022\SysUdvikling2022\AbsenseApi\AbsenseApi\obj\Debug\net6.0\ref\AbsenseApi.dll
+C:\Users\arsh_\Source\Repos\AnthonLUL\SysProject2022\SysUdvikling2022\AbsenseApi\AbsenseApi\obj\Debug\net6.0\AbsenseApi.csproj.AssemblyReference.cache
+C:\Users\arsh_\Source\Repos\AnthonLUL\SysProject2022\SysUdvikling2022\AbsenseApi\AbsenseApi\obj\Debug\net6.0\AbsenseApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\arsh_\Source\Repos\AnthonLUL\SysProject2022\SysUdvikling2022\AbsenseApi\AbsenseApi\obj\Debug\net6.0\AbsenseApi.AssemblyInfoInputs.cache
+C:\Users\arsh_\Source\Repos\AnthonLUL\SysProject2022\SysUdvikling2022\AbsenseApi\AbsenseApi\obj\Debug\net6.0\AbsenseApi.AssemblyInfo.cs
+C:\Users\arsh_\Source\Repos\AnthonLUL\SysProject2022\SysUdvikling2022\AbsenseApi\AbsenseApi\obj\Debug\net6.0\AbsenseApi.csproj.CoreCompileInputs.cache
+C:\Users\arsh_\Source\Repos\AnthonLUL\SysProject2022\SysUdvikling2022\AbsenseApi\AbsenseApi\obj\Debug\net6.0\AbsenseApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\arsh_\Source\Repos\AnthonLUL\SysProject2022\SysUdvikling2022\AbsenseApi\AbsenseApi\obj\Debug\net6.0\AbsenseApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\arsh_\Source\Repos\AnthonLUL\SysProject2022\SysUdvikling2022\AbsenseApi\AbsenseApi\obj\Debug\net6.0\AbsenseApi.dll
+C:\Users\arsh_\Source\Repos\AnthonLUL\SysProject2022\SysUdvikling2022\AbsenseApi\AbsenseApi\obj\Debug\net6.0\refint\AbsenseApi.dll
+C:\Users\arsh_\Source\Repos\AnthonLUL\SysProject2022\SysUdvikling2022\AbsenseApi\AbsenseApi\obj\Debug\net6.0\AbsenseApi.pdb
