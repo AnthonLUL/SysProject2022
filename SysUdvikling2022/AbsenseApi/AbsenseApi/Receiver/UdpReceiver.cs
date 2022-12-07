@@ -21,13 +21,13 @@ namespace AbsenseApi.Receiver
         //private static readonly IPAddress IpAddress = IPAddress.Parse("192.168.5.137"); 
         // Listen for activity on all network interfaces
         // https://msdn.microsoft.com/en-us/library/system.net.ipaddress.ipv6any.aspx
-        public void ReceiveAction()
+        public static void ReceiveAction()
         {
             IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, Port);
             using (UdpClient socket = new UdpClient(ipEndPoint))
             {
                 IPEndPoint remoteEndPoint = new IPEndPoint(0, 0);
-                while (true)
+                
                 {
                     //Console.WriteLine("Waiting for broadcast {0}", socket.Client.LocalEndPoint);
                     byte[] datagramReceived = socket.Receive(ref remoteEndPoint);
@@ -37,26 +37,29 @@ namespace AbsenseApi.Receiver
                     //    remoteEndPoint.Address, remoteEndPoint.Port, message);
 
                     //Parse(message);
-                    Student dude = _manager.GetByNFCId(Convert.ToInt32(message));
-                    Console.WriteLine("After " + dude.CheckedIn);
-                    dude.CheckedIn = !dude.CheckedIn;
-                    dude = _manager.Update(dude.StudentId, dude);
-                    Console.WriteLine("Before " + dude.CheckedIn);
+
                 }
             }
         }
 
-        // To parse data from the IoT devices (depends on the protocol)
-        //private static void Parse(string response)
-        //{
-        //    string[] parts = response.Split(' ');
-        //    foreach (string part in parts)
-        //    {
-        //        Console.WriteLine(part);
-        //    }
-        //    string temperatureLine = parts[6];
-        //    string temperatureStr = temperatureLine.Substring(temperatureLine.IndexOf(": ") + 2);
-        //    Console.WriteLine(temperatureStr);
-        //}
+        //To parse data from the IoT devices(depends on the protocol)
+        public static void Parse(string response)
+        {
+            string[] parts = response.Split(' ');
+
+            Student dude = _manager.GetByNFCId(Convert.ToInt32(parts));
+            Console.WriteLine("After " + dude.CheckedIn);
+            dude.CheckedIn = !dude.CheckedIn;
+            dude = _manager.Update(dude.StudentId, dude);
+            Console.WriteLine("Before " + dude.CheckedIn);
+
+            foreach (string part in parts)
+            {
+                Console.WriteLine(part);
+            }
+            string temperatureLine = parts[6];
+            string temperatureStr = temperatureLine.Substring(temperatureLine.IndexOf(": ") + 2);
+            Console.WriteLine(temperatureStr);
+        }
     }
 }

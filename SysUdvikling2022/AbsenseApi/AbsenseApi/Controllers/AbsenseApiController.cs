@@ -7,8 +7,10 @@ namespace AbsenseApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class AbsenseApiController : ControllerBase
     {
+        
         private readonly AbsenseApiManager _manager = new AbsenseApiManager();
 
         //[ProducesResponseType(StatusCodes.Status200OK)]

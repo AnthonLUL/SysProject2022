@@ -1,9 +1,20 @@
-﻿using StudentLibrary;
+﻿using AbsenseApi.Receiver;
+using StudentLibrary;
 
 namespace AbsenseApi.Managers
 {
     public class AbsenseApiManager
     {
+        public AbsenseApiManager()
+        {
+
+        }
+        public UdpReceiver UdpReceiverAPI {get; set;}
+        public AbsenseApiManager(UdpReceiver udpReceiver)
+        {
+           UdpReceiverAPI 
+        }
+
         public static int nextId = 1;
         private static readonly List<Student> StudentList = new List<Student>
         {
