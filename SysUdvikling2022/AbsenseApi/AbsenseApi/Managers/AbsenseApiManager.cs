@@ -7,26 +7,29 @@ namespace AbsenseApi.Managers
         public static int nextId = 1;
         private static readonly List<Student> StudentList = new List<Student>
         {
-            new Student(studentId: nextId++,name: "Jonas", absenceMin: 24, nFCId: 12123434, checkedIn: false),
+            new Student(studentId: nextId++,name: "Jonas", absenceMin: 24, nFCId: 1234, checkedIn: false),
             new Student(studentId: nextId++,name: "Anthon", absenceMin: 24, nFCId: 12123434, checkedIn: false),
             new Student(studentId: nextId++,name: "Anton", absenceMin: 24, nFCId: 12123434, checkedIn: false),
             new Student(studentId: nextId++,name: "Morten", absenceMin: 24, nFCId: 12123434, checkedIn: false),
         };
 
-        public List<Student> GetAll()
+        public List<Student> GetAll(string name)
         {
             List<Student> students = new List<Student>(StudentList);
+            if (name != null)
+            {
+                students = students.FindAll(students => students.Name != null && students.Name.StartsWith(name));
+            }
+            else if(name == null)
+            {
+                return students;
+            }
             return students;
         }
 
         public Student GetById(int studentId)
         {
             return StudentList.Find(student => student.StudentId == studentId);
-        }
-
-        public Student GetByName(string name)
-        {
-            return StudentList.Find(student => student.Name == name);
         }
 
         public Student GetByNFCId(int nFCId)

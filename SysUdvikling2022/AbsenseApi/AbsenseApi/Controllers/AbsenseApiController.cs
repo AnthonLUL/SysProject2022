@@ -11,24 +11,23 @@ namespace AbsenseApi.Controllers
     {
         private readonly AbsenseApiManager _manager = new AbsenseApiManager();
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpGet]
-        public IEnumerable<Student> Get()
-        {
-            return _manager.GetAll();
-        }
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //[HttpGet]
+        //public IEnumerable<Student> Get()
+        //{
+        //    return _manager.GetAll();
+        //}
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpGet("{name}")]
-        public ActionResult<Student> Get(string name)
+        [HttpGet]
+        public IEnumerable<Student> Get([FromQuery] string ?name)
         {
-            Student student = _manager.GetByName(name);
-            if (student == null) return NotFound("lmao");
-            return student;
-        }  
-        
+            return _manager.GetAll(name);
+
+        }
+
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{nFCId}")]
@@ -71,6 +70,8 @@ namespace AbsenseApi.Controllers
             
 
         }
+
+
 
 
     }
