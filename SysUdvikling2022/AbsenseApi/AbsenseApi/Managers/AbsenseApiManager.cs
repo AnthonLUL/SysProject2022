@@ -1,10 +1,13 @@
 ﻿//using AbsenseApi.Receiver;
+using AbsenseApi.Services;
+using Org.BouncyCastle.Bcpg.OpenPgp;
 using StudentLibrary;
 
 namespace AbsenseApi.Managers
 {
     public class AbsenseApiManager
     {
+        //public List<Student> StudentList = new List<Student>();
 
         //public UdpReceiver UdpReceiverAPI {get; set;}
         //public AbsenseApiManager(UdpReceiver udpReceiver)
@@ -33,7 +36,7 @@ namespace AbsenseApi.Managers
             {
                 students = students.FindAll(students => students.Name != null && students.Name.StartsWith(name));
             }
-            else if(name == null)
+            else if (name == null)
             {
                 return students;
             }
@@ -66,9 +69,9 @@ namespace AbsenseApi.Managers
            return students;
         }
 
-        public Student Update(int studentId, Student update)
+        public Student Update(int nFCId, Student update)
         {
-            Student? student = StudentList.Find(student => student.StudentId == studentId);
+            Student? student = StudentList.Find(student => student.NFCId == nFCId);
             if (student == null) return null;
             student.NameValidatior();
             student.Name = update.Name;

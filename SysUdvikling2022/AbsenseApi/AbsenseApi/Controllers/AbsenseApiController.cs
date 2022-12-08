@@ -53,17 +53,17 @@ namespace AbsenseApi.Controllers
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpPut("id")]
-        public ActionResult<Student> Put(int id, [FromBody] Student value)
+        [HttpPut("{nFCId}")]
+        public ActionResult<Student> Put(int nFCId, [FromBody] Student value)
         {
-            Student student = _manager.Update(id, value);
+            Student student = _manager.Update(nFCId, value);
             if (student == null) return NotFound("There is no student with the given Id");
             return Ok(value);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpDelete("id")]
+        [HttpDelete("{id}")]
         public ActionResult<Student> Delete(int id)
         {
             Student student = _manager.Delete(id);
