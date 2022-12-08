@@ -4,7 +4,8 @@ Vue.createApp({
         return{
             students: [],
             singleStudent: null,
-            studentId: null,
+            name: null,
+            nFCId: null
 
         }
     },
@@ -18,11 +19,19 @@ Vue.createApp({
             }
         },
         methods:{
-            async getStudentById(studentId){
-                const url = baseUrl + "/" + studentId
+            async getByNFCId(nFCId){
+                const url = baseUrl + "/" + nFCId   
                 try{
                     const response = await axios.get(url)
-                    this.singlestudent = await response.data
+                    this.singleStudent = await response.data
+                }catch(ex){
+                alert(ex.message)
+            }
+        },
+            async addStudent(){
+                try{
+                    response = await axios.post(baseUrl, this.addStudent)
+                    this.getAll()   
                 }catch(ex){
                 alert(ex.message)
             }
