@@ -1,18 +1,20 @@
-﻿using AbsenseApi.Receiver;
+﻿//using AbsenseApi.Receiver;
 using StudentLibrary;
 
 namespace AbsenseApi.Managers
 {
     public class AbsenseApiManager
     {
+
+        //public UdpReceiver UdpReceiverAPI {get; set;}
+        //public AbsenseApiManager(UdpReceiver udpReceiver)
+        //{
+        //    UdpReceiverAPI = udpReceiver;
+        //}
+
         public AbsenseApiManager()
         {
 
-        }
-        public UdpReceiver UdpReceiverAPI {get; set;}
-        public AbsenseApiManager(UdpReceiver udpReceiver)
-        {
-           UdpReceiverAPI 
         }
 
         public static int nextId = 1;
