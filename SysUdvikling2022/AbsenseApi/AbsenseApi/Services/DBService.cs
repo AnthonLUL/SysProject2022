@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using AbsenseApi.DBContext;
 using NPOI.SS.Formula.Functions;
+using System.Data.SqlClient;
 
 namespace AbsenseApi.Services
 {
@@ -17,7 +18,7 @@ namespace AbsenseApi.Services
             }
         }
 
-        public async Task<T> GetObjectByNFCIdAsync(int nFCId)
+        public async Task<T> GetObjectByNFCIdAsync(long nFCId)
         {
             using (var context = new StudentContext())
             {

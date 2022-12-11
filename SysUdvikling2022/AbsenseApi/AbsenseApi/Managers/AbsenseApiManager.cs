@@ -2,32 +2,37 @@
 using AbsenseApi.Services;
 using Org.BouncyCastle.Bcpg.OpenPgp;
 using StudentLibrary;
+using AbsenseApi.MockData;
+using System.Data.SqlClient;
 
 namespace AbsenseApi.Managers
 {
-    public class AbsenseApiManager
+    public class AbsenseApiManager : IAbsenseApiManager
     {
+        public DBService<Student> DbService { get; set; }
+
+        public List<Student> StudentList { get; set; }
+
+
+
         //public List<Student> StudentList = new List<Student>();
 
-        //public UdpReceiver UdpReceiverAPI {get; set;}
-        //public AbsenseApiManager(UdpReceiver udpReceiver)
+        //public AbsenseApiManager(DBService<Student> dBService)
         //{
-        //    UdpReceiverAPI = udpReceiver;
+        //    DbService = dBService;
+        //    //StudentList = MockStudents.GetAllStudents().ToList();
+        //    //StudentList = dBService.GetObjectsAsync().Result.ToList();
+
         //}
 
-        public AbsenseApiManager()
-        {
 
+        public List<Student> GetAllStudents()
+        {
+            StudentList = MockStudents.GetAllStudents().ToList();
+            StudentList = DbService.GetObjectsAsync().Result.ToList();
+            return StudentList;
         }
 
-        public static int nextId = 1;
-        private static readonly List<Student> StudentList = new List<Student>
-        {
-            new Student(studentId: nextId++,name: "Jonas", absenceMin: 24, nFCId: 1234, checkedIn: false),
-            new Student(studentId: nextId++,name: "Anthon", absenceMin: 24, nFCId: 12123434, checkedIn: false),
-            new Student(studentId: nextId++,name: "Anton", absenceMin: 24, nFCId: 12123434, checkedIn: false),
-            new Student(studentId: nextId++,name: "Morten", absenceMin: 24, nFCId: 3413684765, checkedIn: false),
-        };
 
         public List<Student> GetAll(string name)
         {
@@ -45,10 +50,10 @@ namespace AbsenseApi.Managers
 
         public Student GetById(int studentId)
         {
-            return StudentList.Find(student => student.StudentId == studentId);
+            return StudentList.Find(student => student.Id == studentId);
         }
 
-        public Student GetByNFCId(int nFCId)
+        public Student GetByNFCId(long nFCId)
         {
             return StudentList.Find(student => student.NFCId == nFCId);
         }
@@ -56,20 +61,19 @@ namespace AbsenseApi.Managers
         public Student Add(Student newStudent)
         {
             newStudent.NameValidatior();
-            newStudent.StudentId = nextId++;
             StudentList.Add(newStudent);
             return newStudent;
         }
 
         public Student Delete(int studentId)
         {
-           Student students = StudentList.Find(student => student.StudentId == studentId);
-           if (students == null)return null;
-           StudentList.Remove(students);
-           return students;
+            Student students = StudentList.Find(student => student.Id == studentId);
+            if (students == null) return null;
+            StudentList.Remove(students);
+            return students;
         }
 
-        public Student Update(int nFCId, Student update)
+        public Student Update(long nFCId, Student update)
         {
             Student? student = StudentList.Find(student => student.NFCId == nFCId);
             if (student == null) return null;
