@@ -19,11 +19,11 @@ Vue.createApp({
             }
         },
         methods:{
-            async getByNFCId(nFCId){
-                const url = baseUrl + "/" + nFCId   
+            async getAll(name){
+                const url = baseUrl + "/" + name   
                 try{
                     const response = await axios.get(url)
-                    this.singleStudent = await response.data
+                    this.students = await response.data
                 }catch(ex){
                 alert(ex.message)
             }
