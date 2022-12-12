@@ -47,13 +47,14 @@ namespace AbsenseApi.Controllers
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpPut("{nFCId}")]
-        public ActionResult<Student> Put(long nFCId)
+        public ActionResult Put(long nFCId) // hvis du skal returner en type så det actionResult<Type> ex. ActionResult<Student>
         {
             Student student = _manager.Update(nFCId);
             if (student == null) return NotFound("There is no student with the given Id");
-            return Ok();
+            return NoContent();
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]

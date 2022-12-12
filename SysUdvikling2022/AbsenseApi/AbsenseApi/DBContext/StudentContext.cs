@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AbsenseApi.Models;
+using Microsoft.EntityFrameworkCore;
 using StudentLibrary;
 
 namespace AbsenseApi.DBContext
@@ -17,5 +18,6 @@ namespace AbsenseApi.DBContext
         }
 
         public DbSet<Student> Students { get; set; }
+        public DbSet<AbsenseTime> AbsenseTime { get; set; }
     }
 }
