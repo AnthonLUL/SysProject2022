@@ -14,20 +14,36 @@
         <h1>Get All</h1>
         <ul v-if="students">
             <li v-for="student in students">
-                {{student.studentId}}, {{student.name}}, {{student.absenceMin}}, {{student.nfcId}}
+                {{student.id}}, {{student.name}}, {{student.absenceMin}}, {{student.nfcId}}, {{student.checkedIn}}
             </li>
         </ul>
     <div v-else>No such student </div>
 
 
 
-    <h1>Get By Name</h1>
-        <input v-model="name" placeholder="Name" type="text">
-        <button v-on:click="getAll(name)" class="btn btn-primary">Search Students</button>
-        <div v-if="students">{{students}}</div>
-        <div v-else>No such Student</div>
+<h1>Get By Name</h1>
+    <input v-model="name" placeholder="Name" type="text">
+    <button v-on:click="getAll(name)" class="btn btn-primary">Search Students</button>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 shadow-lg bg-light">
+                <div v-if="students">
+                    <ul v-for="student in students">
+                        <div class="card mt-3">
+                            <div class="card-header">Student Number {{student.id}}</div>
+                            <div class="card body"> 
+                                Name: {{student.name}}, Absence In Min: {{student.absenceMin}}, NfCId: {{student.nfcId}}, Checked In Status {{student.checkedIn}}
+                                <div class="btn btn-primary">Delete</div>   
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+                <div v-else>No such Student</div>
+            </div>
+        </div>
     </div>
-    <script src="js/index.js"></script>
+</div>
+<script src="js/index.js"></script>
 
 </body>
 </html> 

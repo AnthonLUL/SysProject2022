@@ -20,7 +20,7 @@ Vue.createApp({
         },
         methods:{
             async getAll(name){
-                const url = baseUrl + "/" + name   
+                const url = baseUrl + "/?name=" + name   
                 try{
                     const response = await axios.get(url)
                     this.students = await response.data
