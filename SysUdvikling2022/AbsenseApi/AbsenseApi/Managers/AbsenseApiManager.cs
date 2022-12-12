@@ -1,35 +1,16 @@
-﻿//using AbsenseApi.Receiver;
-using AbsenseApi.Services;
-using Org.BouncyCastle.Bcpg.OpenPgp;
-using StudentLibrary;
+﻿using StudentLibrary;
 using AbsenseApi.MockData;
-using System.Data.SqlClient;
 
 namespace AbsenseApi.Managers
 {
     public class AbsenseApiManager : IAbsenseApiManager
     {
-        public DBService<Student> DbService { get; set; }
 
         public List<Student> StudentList { get; set; }
 
-
-
-        //public List<Student> StudentList = new List<Student>();
-
-        //public AbsenseApiManager(DBService<Student> dBService)
-        //{
-        //    DbService = dBService;
-        //    //StudentList = MockStudents.GetAllStudents().ToList();
-        //    //StudentList = dBService.GetObjectsAsync().Result.ToList();
-
-        //}
-
-
-        public List<Student> GetAllStudents()
+        public List<Student> GetAllStudents(string name)
         {
             StudentList = MockStudents.GetAllStudents().ToList();
-            StudentList = DbService.GetObjectsAsync().Result.ToList();
             return StudentList;
         }
 
@@ -47,12 +28,6 @@ namespace AbsenseApi.Managers
             }
             return students;
         }
-
-        public Student GetById(int studentId)
-        {
-            return StudentList.Find(student => student.Id == studentId);
-        }
-
         public Student GetByNFCId(long nFCId)
         {
             return StudentList.Find(student => student.NFCId == nFCId);

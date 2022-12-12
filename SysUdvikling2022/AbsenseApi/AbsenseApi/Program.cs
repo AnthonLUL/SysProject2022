@@ -1,6 +1,5 @@
 using AbsenseApi.DBContext;
 using AbsenseApi.Secret;
-using AbsenseApi.Services;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using StudentLibrary;
@@ -19,7 +18,7 @@ builder.Services.AddCors(options =>
         });
 });
 builder.Services.AddDbContext<StudentContext>(opt => opt.UseSqlServer(Secret.connectionstring));
-builder.Services.AddTransient<DBService<Student>, DBService<Student>>();
+
 
 
 builder.Services.AddControllers();
