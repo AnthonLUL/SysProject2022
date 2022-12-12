@@ -1,7 +1,5 @@
 ﻿using AbsenseApi.DBContext;
 using AbsenseApi.Managers;
-using AbsenseApi.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StudentLibrary;
 
@@ -18,22 +16,12 @@ namespace AbsenseApi.Controllers
             _manager = new AbsenseApiManagerDB(context);
         }
 
-
-
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status404NotFound)]
-        //[HttpGet]
-        //public IEnumerable<Student> Get()
-        //{
-        //    return _manager.GetAll();
-        //}
-
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet]
-        public IEnumerable<Student> Get()
+        public IEnumerable<Student> Get(string? name)
         {
-            return _manager.GetAllStudents();
+            return _manager.GetAllStudents(name);
 
         }
 

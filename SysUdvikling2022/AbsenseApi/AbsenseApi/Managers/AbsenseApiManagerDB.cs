@@ -1,5 +1,4 @@
 ﻿using AbsenseApi.DBContext;
-using AbsenseApi.Services;
 using Microsoft.EntityFrameworkCore;
 using StudentLibrary;
 
@@ -15,7 +14,7 @@ namespace AbsenseApi.Managers
             _context = context;
         }
 
-        public DBService<Student> DbService { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        //public DBService<Student> DbService { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<Student> StudentList { get; set; }
 
         public Student Add(Student newStudent)
@@ -29,22 +28,35 @@ namespace AbsenseApi.Managers
 
         public Student Delete(int studentId)
         {
-            throw new NotImplementedException();
+            List<Student> Students = _context.Students.ToList();
+            Student? student = Students.Find(student => student.Id == studentId);
+            if (student == null) return null;
+            _context.Students.Remove(student);
+            _context.SaveChanges();
+            return student;
         }
 
-        public List<Student> GetAllStudents()
+        public List<Student> GetAllStudents(string? name)
         {
+            if (name != null)
+            {
+                StudentList = _context.Students.ToList();
+                StudentList = StudentList.FindAll(students => students.Name != null && students.Name.StartsWith(name));
+                return StudentList;
+            }
+            else if(name == null)
+            {
+                return _context.Students.ToList();
+            }
             return _context.Students.ToList();
-        }
-
-        public Student GetById(int studentId)
-        {
-            throw new NotImplementedException();
         }
 
         public Student GetByNFCId(long nFCId)
         {
-                throw new NotImplementedException();
+            List<Student> Students = _context.Students.ToList();
+            Student? student = Students.Find(student => student.NFCId == nFCId);
+            if (student == null) return null;
+            return student;
         }
 
         public Student Update(long nFCId)
