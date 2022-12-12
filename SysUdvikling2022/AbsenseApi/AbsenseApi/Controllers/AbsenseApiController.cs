@@ -61,11 +61,11 @@ namespace AbsenseApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpPut("{nFCId}")]
-        public ActionResult<Student> Put(long nFCId, [FromBody] Student value)
+        public ActionResult<Student> Put(long nFCId)
         {
-            Student student = _manager.Update(nFCId, value);
+            Student student = _manager.Update(nFCId);
             if (student == null) return NotFound("There is no student with the given Id");
-            return Ok(value);
+            return Ok();
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]

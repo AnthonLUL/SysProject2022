@@ -73,15 +73,11 @@ namespace AbsenseApi.Managers
             return students;
         }
 
-        public Student Update(long nFCId, Student update)
+        public Student Update(long nFCId)
         {
             Student? student = StudentList.Find(student => student.NFCId == nFCId);
             if (student == null) return null;
             student.NameValidatior();
-            student.Name = update.Name;
-            student.AbsenceMin = update.AbsenceMin;
-            student.NFCId = update.NFCId;
-            student.CheckedIn = update.CheckedIn;
             return student;
         }
     }

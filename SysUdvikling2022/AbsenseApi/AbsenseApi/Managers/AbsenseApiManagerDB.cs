@@ -16,7 +16,7 @@ namespace AbsenseApi.Managers
         }
 
         public DBService<Student> DbService { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public List<Student> StudentList { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<Student> StudentList { get; set; }
 
         public Student Add(Student newStudent)
         {
@@ -47,9 +47,14 @@ namespace AbsenseApi.Managers
             throw new NotImplementedException();
         }
 
-        public Student Update(long nFCId, Student update)
+        public Student Update(long nFCId)
         {
-            throw new NotImplementedException();
+            List<Student> Students = _context.Students.ToList();
+            Student? student = Students.Find(student => student.NFCId == nFCId);
+            if (student == null) return null;
+            student.CheckedIn =! student.CheckedIn;
+            _context.SaveChanges();
+            return student;
         }
     }
 }

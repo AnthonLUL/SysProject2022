@@ -14,6 +14,6 @@ namespace AbsenseApi.Managers
         List<Student> GetAllStudents();
         Student GetById(int studentId);
         Student GetByNFCId(long nFCId);
-        Student Update(long nFCId, Student update);
+        Student Update(long nFCId);
     }
 }
