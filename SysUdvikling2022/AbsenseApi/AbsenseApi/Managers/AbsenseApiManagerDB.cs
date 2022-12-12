@@ -44,7 +44,7 @@ namespace AbsenseApi.Managers
 
         public Student GetByNFCId(long nFCId)
         {
-            throw new NotImplementedException();
+                throw new NotImplementedException();
         }
 
         public Student Update(long nFCId)

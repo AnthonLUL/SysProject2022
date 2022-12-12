@@ -19,10 +19,12 @@
         </ul>
     <div v-else>No such student </div>
 
-    <h1>Get By NFCId</h1>
-        <input v-model="nFCId" placeholder="NFCId" type="number">
-        <button v-on:click="getByNFCId(nFCId)" class="btn btn-primary">Get Student</button>
-        <div v-if="singleStudent">{{singleStudent}}</div>
+
+
+    <h1>Get By Name</h1>
+        <input v-model="name" placeholder="Name" type="text">
+        <button v-on:click="getAll(name)" class="btn btn-primary">Search Students</button>
+        <div v-if="students">{{students}}</div>
         <div v-else>No such Student</div>
     </div>
     <script src="js/index.js"></script>
