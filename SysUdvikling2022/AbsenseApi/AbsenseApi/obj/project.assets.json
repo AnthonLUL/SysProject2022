@@ -4329,19 +4329,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\anton\\.nuget\\packages\\": {}
+    "C:\\Users\\Jonas\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\anton\\source\\repos\\SysProject2022\\SysUdvikling2022\\AbsenseApi\\AbsenseApi\\AbsenseApi.csproj",
+      "projectUniqueName": "C:\\Users\\Jonas\\source\\repos\\SysProject2022\\SysUdvikling2022\\AbsenseApi\\AbsenseApi\\AbsenseApi.csproj",
       "projectName": "AbsenseApi",
-      "projectPath": "C:\\Users\\anton\\source\\repos\\SysProject2022\\SysUdvikling2022\\AbsenseApi\\AbsenseApi\\AbsenseApi.csproj",
-      "packagesPath": "C:\\Users\\anton\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\anton\\source\\repos\\SysProject2022\\SysUdvikling2022\\AbsenseApi\\AbsenseApi\\obj\\",
+      "projectPath": "C:\\Users\\Jonas\\source\\repos\\SysProject2022\\SysUdvikling2022\\AbsenseApi\\AbsenseApi\\AbsenseApi.csproj",
+      "packagesPath": "C:\\Users\\Jonas\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jonas\\source\\repos\\SysProject2022\\SysUdvikling2022\\AbsenseApi\\AbsenseApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\anton\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Jonas\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <Reference Include="StudentLibrary">
-      <HintPath>..\..\..\..\..\..\Downloads\StudentLibrary.dll</HintPath>
+      <HintPath>..\..\..\..\StudentLibrary\StudentLibrary\bin\Debug\net6.0\StudentLibrary.dll</HintPath>
     </Reference>
   </ItemGroup>
 

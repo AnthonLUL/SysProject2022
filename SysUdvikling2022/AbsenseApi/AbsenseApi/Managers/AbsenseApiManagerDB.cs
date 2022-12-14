@@ -1,6 +1,7 @@
 ﻿using AbsenseApi.DBContext;
 using AbsenseApi.MockData;
 using AbsenseApi.Models;
+using MathNet.Numerics.Distributions;
 using NPOI.SS.Formula.Functions;
 using SQLitePCL;
 using StudentLibrary;
@@ -10,7 +11,7 @@ namespace AbsenseApi.Managers
 {
     public class AbsenseApiManagerDB : IAbsenseApiManager
     {
-        
+
         private StudentContext _context;
         public List<Student> StudentList;
 
@@ -19,9 +20,9 @@ namespace AbsenseApi.Managers
             _context = context;
             StudentList = _context.Students.ToList();
         }
-        
+
         //public DBService<Student> DbService { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        
+
 
         public Student Add(Student newStudent)
         {
@@ -47,7 +48,7 @@ namespace AbsenseApi.Managers
                 StudentList = StudentList.FindAll(students => students.Name != null && students.Name.StartsWith(name));
                 return StudentList;
             }
-            
+
             else return StudentList;
         }
 
@@ -60,20 +61,29 @@ namespace AbsenseApi.Managers
 
         public Student Update(long nFCId)
         {
-            Student? student2 = GetByNFCId(nFCId);
+            Student? student = GetByNFCId(nFCId);
+
+            if (student == null) return null;
+            student.CheckedIn = !student.CheckedIn;
+
+            CheckInAndOutTimeStamp(nFCId);
+
+            _context.SaveChanges();
+
+            return student;
+        }
+
+
+        public Student CheckInAndOutTimeStamp(long nFCId)
+        {
+            Student? student = GetByNFCId(nFCId);
             DateTime thistime = DateTime.Now;
-            
-            if (student2 == null) return null;
-            student2.CheckedIn = !student2.CheckedIn;
-            AbsenseTime absenseTimeStamp = new AbsenseTime(thistime, student2.Id, student2.CheckedIn);
+            AbsenseTime absenseTimeStamp = new AbsenseTime(thistime, student.Id, student.CheckedIn);
             DateTime starttime = new DateTime(thistime.Year, thistime.Month, thistime.Day, 09, 10, 00);
             DateTime Endtime = new DateTime(thistime.Year, thistime.Month, thistime.Day, 14, 50, 00);
-
-
             double defaultDif = (Endtime - starttime).TotalMinutes;
             double floornumber = Math.Floor(defaultDif);
-            int DefaultDifferenceMin = (int)floornumber; 
-
+            int DefaultDifferenceMin = (int)floornumber;
             double yourDif = (thistime - Endtime).TotalMinutes;
             double floornumber2 = Math.Floor(yourDif);
             int YourDifferenceMin = (int)floornumber2;
@@ -81,23 +91,22 @@ namespace AbsenseApi.Managers
             if (YourDifferenceMin < DefaultDifferenceMin)
             {
                 int YourAbsenceMin = DefaultDifferenceMin - YourDifferenceMin;
-                student2.AbsenceMin = +YourAbsenceMin;
+                student.AbsenceMin = +YourAbsenceMin;
             }
-
             _context.AbsenseTime.Add(absenseTimeStamp);
-            _context.SaveChanges();
 
-
-            if(thistime.Hour > Endtime.Hour) // Vores check folk ud, burde være i en service der kører på systemet uden om API
+            if (thistime.Hour > Endtime.Hour) // Vores check folk ud, burde være i en service der kører på systemet uden om API
             {
-                foreach(Student singleStudent in StudentList)
+                foreach (Student singleStudent in StudentList)
                 {
                     singleStudent.CheckedIn = false;
                     _context.SaveChanges();
                 }
-                
             }
-            return student2;
+            return student;
         }
+            
     }
 }
+
+
