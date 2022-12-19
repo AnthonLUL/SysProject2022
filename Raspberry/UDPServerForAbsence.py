@@ -8,8 +8,8 @@ urllib3.disable_warnings();
 
 urlwithID = "";
 
-url = "https://localhost:7230/api/AbsenseApi/{}"
-
+#url = "https://localhost:7230/api/AbsenseApi/{}"
+url = "https://absenseapi20221214143540.azurewebsites.net/api/absenseapi/{}"
 
 serverPort = 7000
 serverSocket = socket(AF_INET, SOCK_DGRAM)
