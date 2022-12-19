@@ -38,7 +38,7 @@ Vue.createApp({
                 alert(ex.message)
             }
         },
-        async deleteById(idToBeDeleted){
+        async deleteByNFCId(idToBeDeleted){
             const url = baseUrl + "/" + idToBeDeleted
             try {
                 console.log(url)

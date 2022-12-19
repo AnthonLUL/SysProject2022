@@ -16,6 +16,10 @@
 <h1>Get By Name</h1>
     <input v-model="name" placeholder="Name" type="text">
     <button v-on:click="getAll(name)" class="btn btn-primary">Search Students</button>
+
+    <h1>Delete by NFC Id</h1>
+    <input v-model="idToBeDeleted" placeholder="NFC ID" type="number"/>
+    <button v-on:click="deleteByNFCId(idToBeDeleted)" class="btn btn-warning">Delete Student</button>
     
     <table class="table table-bordered table-hover table-striped" width="60%">
         <thead>
@@ -74,11 +78,6 @@
                         </div>
                     </div>
                 </th>
-                <th>
-                    <div class="d-flex justify-content-between p-0">
-                        <h5>Actions</h5>
-                    </div>  
-                </th>
             </tr>
         </thead>
         <tbody>
@@ -107,21 +106,7 @@
                     <div class="bot-buffer" v-for="student in students">
                     {{student.checkedIn}}
                     </div>
-                </td>
-                       <td>
-                        <div v-for="student in students">
-                            <ul class="list-inline m-0">
-                                <li class="list-inline-item bot-buffer">
-                                    <a class="btn btn-primary btn-sm"  type="button" data-toggle="tooltip" title="Edit" asp-page="EditItem" asp-route-id="@item.ItemId"><i class="fa fa-edit"></i></a>
-                                </li>
-                                <li class="list-inline-item bot-buffer">
-                                    <a class="btn btn-danger btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="Delete" asp-page="DeleteItem" asp-route-id="@item.ItemId"><i class="fa fa-trash"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        </td>
-                    
-                
+                </td>                
             </tr>
         </tbody>
     </table>
