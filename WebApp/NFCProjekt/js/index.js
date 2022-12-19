@@ -1,10 +1,12 @@
-const baseUrl = "https://localhost:7230/api/AbsenseApi"
+const baseUrl = "https://absenseapi20221214143540.azurewebsites.net/api/absenseapi"
 Vue.createApp({
     data(){
         return{
             students: [],
             singleStudent: null,
             name: null,
+            idToBeDeleted: null,
+            idToUpdate: null,
             nFCId: null
 
         }
@@ -36,5 +38,25 @@ Vue.createApp({
                 alert(ex.message)
             }
         },
+        async deleteById(idToBeDeleted){
+            const url = baseUrl + "/" + idToBeDeleted
+            try {
+                console.log(url)
+                response = await axios.delete(url)
+                this.getAll()
+            } catch (ex){
+                alert(ex.message)
+            }
+        },
+        async updateRecord() {
+            console.log("hejsa")
+            const url = baseUrl + "/" + this.idToUpdate
+            try{
+                response = await axios.put(url, this.recordToUpdate)
+                this.getAll()
+            } catch(ex) {
+                alert(ex.message)
+            }
+        }
     }
 }).mount("#app")

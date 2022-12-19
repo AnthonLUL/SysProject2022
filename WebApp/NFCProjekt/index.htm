@@ -5,43 +5,126 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
     <script src="https://unpkg.com/vue@next"></script>
     <title>Absence</title>
 </head>
 <body>
     <div id="app">
-        <h1>Get All</h1>
-        <ul v-if="students">
-            <li v-for="student in students">
-                {{student.id}}, {{student.name}}, {{student.absenceMin}}, {{student.nfcId}}, {{student.checkedIn}}
-            </li>
-        </ul>
-    <div v-else>No such student </div>
-
-
-
 <h1>Get By Name</h1>
     <input v-model="name" placeholder="Name" type="text">
     <button v-on:click="getAll(name)" class="btn btn-primary">Search Students</button>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6 shadow-lg bg-light">
-                <div v-if="students">
-                    <ul v-for="student in students">
-                        <div class="card mt-3">
-                            <div class="card-header">Student Number {{student.id}}</div>
-                            <div class="card body"> 
-                                Name: {{student.name}}, Absence In Min: {{student.absenceMin}}, NfCId: {{student.nfcId}}, Checked In Status {{student.checkedIn}}
-                                <div class="btn btn-primary">Delete</div>   
-                            </div>
+    
+    <table class="table table-bordered table-hover table-striped" width="60%">
+        <thead>
+            <tr class="btn-secondary active">
+                <th>
+                    <div class="d-flex justify-content-between p-0">
+                        <div><h5>StudentID </h5></div>
+                        <div>
+                        <a data-toggle="tooltip" title="Sort By Id" asp-page-handler="SortById"><i class="fa fa-angle-up"></i></a>
+                            <a data-toggle="tooltip" title="Sort By Id Descending" asp-page-handler="SortByIdDescending"><i class="fa fa-angle-down"></i></a>
                         </div>
-                    </ul>
-                </div>
-                <div v-else>No such Student</div>
-            </div>
-        </div>
-    </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="d-flex justify-content-between p-0">
+                        <div>
+                            <h5>NfCId</h5>
+                        </div>
+                        <div>
+                            <a data-toggle="tooltip" title="Sort By Name" asp-page-handler="SortByName"><i class="fa fa-angle-up"></i></a>
+                            <a data-toggle="tooltip" title="Sort By Name Descending" asp-page-handler="SortByNameDescending"><i class="fa fa-angle-down"></i></a>
+                        </div>
+                    </div>
+                   
+                </th>
+                <th>
+                    <div class="d-flex justify-content-between p-0">
+                        <div>
+                            <h5>Name</h5>
+                        </div>
+                        <div>
+                            <a data-toggle="tooltip" title="Sort By Price" asp-page-handler="SortByPrice"><i class="fa fa-angle-up"></i></a>
+                            <a data-toggle="tooltip" title="Sort By Price Descending" asp-page-handler="SortByPriceDescending"><i class="fa fa-angle-down"></i></a>
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="d-flex justify-content-between p-0">
+                        <div>
+                            <h5>Absense In Minutes</h5>
+                        </div>
+                        <div>
+                            <a data-toggle="tooltip" title="Sort By Price" asp-page-handler="SortByPrice"><i class="fa fa-angle-up"></i></a>
+                            <a data-toggle="tooltip" title="Sort By Price Descending" asp-page-handler="SortByPriceDescending"><i class="fa fa-angle-down"></i></a>
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="d-flex justify-content-between p-0">
+                        <div>
+                            <h5>checked in status</h5>
+                        </div>
+                        <div>
+                            <a data-toggle="tooltip" title="Sort By Price" asp-page-handler="SortByPrice"><i class="fa fa-angle-up"></i></a>
+                            <a data-toggle="tooltip" title="Sort By Price Descending" asp-page-handler="SortByPriceDescending"><i class="fa fa-angle-down"></i></a>
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="d-flex justify-content-between p-0">
+                        <h5>Actions</h5>
+                    </div>  
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="bot-buffer" v-for="student in students">
+                    {{student.id}}
+                    </div>
+                </td>
+                <td>
+                    <div class="bot-buffer" v-for="student in students">
+                    {{student.nfcId}}
+                    </div>
+                </td>
+                <td>
+                    <div class="bot-buffer" v-for="student in students">
+                    {{student.name}}
+                    </div>
+                </td>
+                <td>
+                    <div class="bot-buffer" v-for="student in students">
+                    {{student.absenceMin}}
+                    </div>
+                </td>
+                <td>
+                    <div class="bot-buffer" v-for="student in students">
+                    {{student.checkedIn}}
+                    </div>
+                </td>
+                       <td>
+                        <div v-for="student in students">
+                            <ul class="list-inline m-0">
+                                <li class="list-inline-item bot-buffer">
+                                    <a class="btn btn-primary btn-sm"  type="button" data-toggle="tooltip" title="Edit" asp-page="EditItem" asp-route-id="@item.ItemId"><i class="fa fa-edit"></i></a>
+                                </li>
+                                <li class="list-inline-item bot-buffer">
+                                    <a class="btn btn-danger btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="Delete" asp-page="DeleteItem" asp-route-id="@item.ItemId"><i class="fa fa-trash"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        </td>
+                    
+                
+            </tr>
+        </tbody>
+    </table>
 </div>
 <script src="js/index.js"></script>
 
