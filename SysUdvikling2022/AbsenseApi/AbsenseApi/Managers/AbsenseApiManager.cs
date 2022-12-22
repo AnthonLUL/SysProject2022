@@ -5,6 +5,10 @@ namespace AbsenseApi.Managers
 {
     public class AbsenseApiManager : IAbsenseApiManager
     {
+        public AbsenseApiManager(List<Student> studentList)
+        {
+            StudentList = studentList;
+        }
 
         public List<Student> StudentList { get; set; }
 
@@ -15,7 +19,7 @@ namespace AbsenseApi.Managers
         }
 
 
-        public List<Student> GetAll(string name)
+        public List<Student> GetAll(string? name)
         {
             List<Student> students = new List<Student>(StudentList);
             if (name != null)
@@ -36,7 +40,7 @@ namespace AbsenseApi.Managers
         public Student Add(Student newStudent)
         {
             newStudent.NameValidatior();
-            StudentList.Add(newStudent);
+             StudentList.Add(newStudent);
             return newStudent;
         }
 
