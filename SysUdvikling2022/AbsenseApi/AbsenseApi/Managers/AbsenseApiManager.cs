@@ -55,6 +55,7 @@ namespace AbsenseApi.Managers
         public Student Update(long nFCId)
         {
             Student? student = StudentList.Find(student => student.NFCId == nFCId);
+            student.CheckedIn = !student.CheckedIn;
             if (student == null) return null;
             student.NameValidatior();
             return student;
